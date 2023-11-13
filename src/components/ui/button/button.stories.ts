@@ -34,14 +34,14 @@ export const Secondary: Story = {
 }
 export const Tertiary: Story = {
   args: {
-    children: 'Tertiary Button',
+    children: 'Tertiary',
     disabled: false,
     variant: 'tertiary',
   },
 }
 export const Link: Story = {
   args: {
-    children: 'Tertiary Button',
+    children: 'Link-button',
     disabled: false,
     variant: 'link',
   },
