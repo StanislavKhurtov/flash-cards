@@ -1,7 +1,5 @@
 import { ReactNode } from 'react'
 
-import { Button } from '@/components/ui/button/button'
-
 type IconProps = {
   children: ReactNode
   height: string
@@ -10,13 +8,6 @@ type IconProps = {
 export const App = () => {
   return (
     <div>
-      <Button variant={'primary'}>Button primary</Button>
-      <Button variant={'secondary'}>Button Secondary</Button>
-      <Button variant={'tertiary'}>Tertiary</Button>
-      <Button variant={'link'}>Link-button</Button>
-      <Button as={'a'} href={'https://google.com'} target={'_blank'}>
-        Привет
-      </Button>
       <Icon height={'24'} width={'24'}>
         <path
           d={
