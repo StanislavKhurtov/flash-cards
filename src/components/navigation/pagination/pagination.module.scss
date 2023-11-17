@@ -31,8 +31,9 @@
     border-radius: 2px;
     transition: 0.4s;
   }
+
   &:focus {
-  outline: 2px solid var(--info-900, #234E99);
+    outline: 2px solid var(--info-900, #234E99);
     border-radius: 2px;
   }
 }
@@ -43,6 +44,7 @@
   background-color: var(--light-100);
   border-radius: 2px;
   border: none;
+  outline: none;
 }
 
 .prevButton,
@@ -52,8 +54,9 @@
   border: none;
   cursor: pointer;
 }
+
 .text1,
-.text2{
+.text2 {
   color: var(--light-100, #FFF);
   font-size: var(--font-size-s);
   line-height: var(--line-height-m);
