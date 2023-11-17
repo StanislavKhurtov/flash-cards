@@ -17,5 +17,5 @@ export const Default = () => {
     console.log(count)
   }
 
-  return <Pagination onChange={onChange} page={page} totalCount={900} />
+  return <Pagination onChange={onChange} page={page} totalCount={5500} />
 }

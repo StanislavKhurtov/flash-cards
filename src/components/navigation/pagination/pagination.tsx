@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import KeyboardArrowLeft from '@/assets/icons/keyboard-arrow-left'
 import KeyboardArrowRight from '@/assets/icons/keyboard-arrow-right'
+import { Typography } from '@/components/ui/typography'
 
 import s from './pagination.module.scss'
 
@@ -94,7 +95,9 @@ export const Pagination: React.FC<PaginationPropsType> = ({ onChange, page, tota
       >
         <KeyboardArrowRight color={isNextButtonDisabled ? '#808080' : '#fff'} />
       </button>
-      <span className={s.text1}>показать</span>
+      <Typography as={'span'} className={s.text1}>
+        Показать
+      </Typography>
       <select className={s.select} onChange={onChangeSelect} value={selectedCount}>
         <option value={10}>10</option>
         <option value={20}>20</option>
@@ -102,7 +105,9 @@ export const Pagination: React.FC<PaginationPropsType> = ({ onChange, page, tota
         <option value={50}>50</option>
         <option value={100}>100</option>
       </select>
-      <span className={s.text2}>на странице</span>
+      <Typography as={'span'} className={s.text2}>
+        на странице
+      </Typography>
     </div>
   )
 }
