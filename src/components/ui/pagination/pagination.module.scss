@@ -20,15 +20,12 @@
   cursor: pointer;
 }
 
-
-
 .pageButton {
   padding: 0 8px;
   line-height: 24px;
   background: none;
   border: none;
   cursor: pointer;
-
 
   &:hover {
     background-color: var(--dark-500, #333);
