@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-import KeyboardArrowLeft from '@/assets/icons/keyboard-arrow-left'
-import KeyboardArrowRight from '@/assets/icons/keyboard-arrow-right'
 import { Typography } from '@/components/ui/typography'
 
-import s from './pagination.module.scss'
+import pgn from './pagination.module.scss'
+
+import KeyboardArrowLeft from '../../../assets/icons/keyboard-arrow-left'
+import KeyboardArrowRight from '../../../assets/icons/keyboard-arrow-right'
 
 export type PaginationPropsType = {
   onChange: (page: number, count: number) => void
@@ -28,7 +29,7 @@ export const Pagination: React.FC<PaginationPropsType> = ({ onChange, page, tota
 
   const renderPageButton = (pageNumber: number) => (
     <button
-      className={s.pageButton + (pageNumber === page ? ` ${s.active}` : '')}
+      className={pgn.pageButton + (pageNumber === page ? ` ${pgn.active}` : '')}
       key={`page_${pageNumber}`}
       onClick={() => onChangeCallback(pageNumber)}
     >
@@ -36,7 +37,7 @@ export const Pagination: React.FC<PaginationPropsType> = ({ onChange, page, tota
     </button>
   )
 
-  const renderEllipsis = () => <span className={s.pageButton}>...</span>
+  const renderEllipsis = () => <span className={pgn.pageButton}>...</span>
 
   const renderFirstPage = () => renderPageButton(1)
   const renderLastPage = () => renderPageButton(lastPage)
@@ -79,9 +80,9 @@ export const Pagination: React.FC<PaginationPropsType> = ({ onChange, page, tota
   const isNextButtonDisabled = page === lastPage
 
   return (
-    <div className={s.pagination}>
+    <div className={pgn.pagination}>
       <button
-        className={s.prevButton}
+        className={pgn.prevButton}
         disabled={isPrevButtonDisabled}
         onClick={() => onChangeCallback(page - 1)}
       >
@@ -89,25 +90,26 @@ export const Pagination: React.FC<PaginationPropsType> = ({ onChange, page, tota
       </button>
       {renderPagination()}
       <button
-        className={s.nextButton}
+        className={pgn.nextButton}
         disabled={isNextButtonDisabled}
         onClick={() => onChangeCallback(page + 1)}
       >
         <KeyboardArrowRight color={isNextButtonDisabled ? '#808080' : '#fff'} />
       </button>
-      <Typography as={'span'} className={s.text1}>
+      <Typography as={'span'} className={pgn.text1}>
         Показать
       </Typography>
-      <select className={s.select} onChange={onChangeSelect} value={selectedCount}>
+      <select className={pgn.select} onChange={onChangeSelect} value={selectedCount}>
         <option value={10}>10</option>
         <option value={20}>20</option>
         <option value={30}>30</option>
         <option value={50}>50</option>
         <option value={100}>100</option>
       </select>
-      <Typography as={'span'} className={s.text2}>
+      <Typography as={'span'} className={pgn.text2}>
         на странице
       </Typography>
     </div>
   )
 }
+console.log()

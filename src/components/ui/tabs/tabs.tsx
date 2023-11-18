@@ -1,58 +1,50 @@
+import { FC, useState } from 'react'
+
 import * as Tabs from '@radix-ui/react-tabs'
 
-import './tabs.module.scss'
+import s from './tabs.module.scss'
 
-export const TabsDemo = () => (
-  <Tabs.Root className={'TabsRoot'} defaultValue={'tab1'}>
-    <Tabs.List aria-label={'Manage your account'} className={'TabsList'}>
-      <Tabs.Trigger className={'TabsTrigger'} value={'tab1'}>
-        Account
-      </Tabs.Trigger>
-      <Tabs.Trigger className={'TabsTrigger'} value={'tab2'}>
-        Password
-      </Tabs.Trigger>
-    </Tabs.List>
-    <Tabs.Content className={'TabsContent'} value={'tab1'}>
-      <p className={'Text'}>Make changes to your account here. Click save when youre done.</p>
-      <fieldset className={'Fieldset'}>
-        <label className={'Label'} htmlFor={'name'}>
-          Name
-        </label>
-        <input className={'Input'} defaultValue={'Pedro Duarte'} id={'name'} />
-      </fieldset>
-      <fieldset className={'Fieldset'}>
-        <label className={'Label'} htmlFor={'username'}>
-          Username
-        </label>
-        <input className={'Input'} defaultValue={'@peduarte'} id={'username'} />
-      </fieldset>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 20 }}>
-        <button className={'Button green'}>Save changes</button>
-      </div>
-    </Tabs.Content>
-    <Tabs.Content className={'TabsContent'} value={'tab2'}>
-      <p className={'Text'}>Change your password here. After saving, youll be logged out.</p>
-      <fieldset className={'Fieldset'}>
-        <label className={'Label'} htmlFor={'currentPassword'}>
-          Current password
-        </label>
-        <input className={'Input'} id={'currentPassword'} type={'password'} />
-      </fieldset>
-      <fieldset className={'Fieldset'}>
-        <label className={'Label'} htmlFor={'newPassword'}>
-          New password
-        </label>
-        <input className={'Input'} id={'newPassword'} type={'password'} />
-      </fieldset>
-      <fieldset className={'Fieldset'}>
-        <label className={'Label'} htmlFor={'confirmPassword'}>
-          Confirm password
-        </label>
-        <input className={'Input'} id={'confirmPassword'} type={'password'} />
-      </fieldset>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 20 }}>
-        <button className={'Button green'}>Change password</button>
-      </div>
-    </Tabs.Content>
-  </Tabs.Root>
-)
+export type TabsType = {
+  disabled?: boolean
+  title: string
+  value: string
+}
+
+export type TabSwitcherPropsType = {
+  tabs: TabsType[]
+}
+
+export const Tab: FC<TabSwitcherPropsType> = ({ tabs }) => {
+  const [activeTab, setActiveTab] = useState(tabs[0].value)
+
+  return (
+    <div className={s.wrapper}>
+      <Tabs.Root
+        className={s.tabsRoot}
+        defaultValue={tabs[0].value}
+        onValueChange={setActiveTab}
+        orientation={'horizontal'}
+        value={activeTab}
+      >
+        <Tabs.List className={s.tabsList}>
+          {tabs.map((tab: TabsType, i: number) => (
+            <Tabs.Trigger
+              className={`${s.tabsTrigger} ${activeTab === tab.value ? s.active : ''}`}
+              key={i}
+              value={tab.value}
+            >
+              <span>{tab.title}</span>
+            </Tabs.Trigger>
+          ))}
+        </Tabs.List>
+        <div className={s.body}>
+          {tabs.map((tab: TabsType, i: number) => (
+            <Tabs.Content className={s.tabsContent} key={i} value={tab.value}>
+              {tab.value}
+            </Tabs.Content>
+          ))}
+        </div>
+      </Tabs.Root>
+    </div>
+  )
+}
