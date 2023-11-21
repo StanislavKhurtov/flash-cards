@@ -1,17 +1,44 @@
-import { Tab } from './components/ui/tabs/tabs'
-
 export const App = () => {
-  const tabs = [
-    { title: 'Switcher', value: '1' },
-    { title: 'Switcher', value: '2' },
-    { title: 'Switcher', value: '3' },
-    { title: 'Switcher', value: '4' },
-    { title: 'Switcher', value: '5' },
-  ]
-
   return (
-    <div>
-      <Tab tabs={tabs} />
+    <div className={'wrapper'}>
+      <div className={'header'} data-fullscreen>
+        <div className={'header__container'}>
+          <div className={'header__block-left'}>
+            <h2>Привет</h2>
+            <p className={'header__text'}>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+              has been the industrys standard dummy text ever since the 1500s.
+            </p>
+            <button>Click me</button>
+          </div>
+          <div className={'header__block-right'}>
+            <h2>Пока</h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+              has been the industrys standard dummy text ever since the 1500s.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className={'main'}>
+        <div className={'main__container'}>
+          <div className={'main__block-left'}>
+            <h2>Привет</h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+              has been the industrys standard dummy text ever since the 1500s.
+            </p>
+            <button className={'main__btn'}>Click me</button>
+          </div>
+          <div className={'main__block-right'}>
+            <h2>Пока</h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+              has been the industrys standard dummy text ever since the 1500s.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
