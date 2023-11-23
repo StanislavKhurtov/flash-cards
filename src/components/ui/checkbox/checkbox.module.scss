@@ -11,6 +11,7 @@
 
   background-color: $backgroundColor;
   border-radius: 50%;
+
 }
 
 .default {
@@ -28,6 +29,7 @@
 
   border: 2px solid var(--color-light-100);
   border-radius: 2px;
+
 
   &:hover::before {
     @include circle(var(--color-dark-500));
@@ -65,8 +67,10 @@
   width: fit-content;
 
   color: var(--color-light-100);
+
 }
 
 .labelDisabled {
   color: var(--color-dark-100);
 }
+
