@@ -1,7 +1,9 @@
+import { LoginForm } from '@/components/auth/login-form/login-form'
+
 export const App = () => {
   return (
     <div className={'wrapper'}>
-      <div className={'header'} data-fullscreen>
+      <div className={'header'}>
         <div className={'header__container'}>
           <div className={'header__block-left'}>
             <h2>Привет</h2>
@@ -37,6 +39,11 @@ export const App = () => {
               has been the industrys standard dummy text ever since the 1500s.
             </p>
           </div>
+        </div>
+      </div>
+      <div className={'form'}>
+        <div className={'form__container'}>
+          <LoginForm />
         </div>
       </div>
     </div>
