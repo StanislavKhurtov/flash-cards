@@ -1,6 +1,8 @@
-import { useController, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
-import { Checkbox, TextField } from '@/components/ui'
+import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox/controlled-checkbox'
+import { ControlledTextField } from '@/components/ui/controlled/controlled-textField/controlled-text-field'
+import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
@@ -19,13 +21,13 @@ export const LoginForm = () => {
     control,
     formState: { errors },
     handleSubmit,
-    register,
   } = useForm<FormValues>({
     defaultValues: {
       email: '',
       password: '',
       rememberMe: false,
     },
+    mode: 'onSubmit',
     resolver: zodResolver(loginSchema),
   })
 
@@ -33,23 +35,25 @@ export const LoginForm = () => {
     console.log(data)
   }
 
-  const {
-    field: { onChange, value },
-  } = useController({
-    control,
-    name: 'rememberMe',
-  })
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField {...register('email')} errorMessage={errors.email?.message} label={'email'} />
-      <TextField
-        {...register('password')}
-        errorMessage={errors.password?.message}
-        label={'password'}
-      />
-      <Checkbox checked={value} label={'remember me'} onChange={onChange} />
-      <Button type={'submit'}>Submit</Button>
-    </form>
+    <>
+      <DevTool control={control} />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <ControlledTextField
+          control={control}
+          errorMessage={errors.email?.message}
+          label={'email'}
+          name={'email'}
+        />
+        <ControlledTextField
+          control={control}
+          errorMessage={errors.password?.message}
+          label={'password'}
+          name={'password'}
+        />
+        <ControlledCheckbox control={control} label={'remember me'} name={'rememberMe'} />
+        <Button type={'submit'}>Submit</Button>
+      </form>
+    </>
   )
 }

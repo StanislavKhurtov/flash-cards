@@ -1,11 +1,10 @@
 import { ChangeEvent, ComponentProps, ComponentPropsWithoutRef, forwardRef, useState } from 'react'
 
 import { Eye, EyeOffOutline, Search } from '@/assets'
-
+import { Typography } from '@/components/ui'
 import { clsx } from 'clsx'
 
 import s from './text-field.module.scss'
-import { Typography } from '@/components/ui'
 
 export type TextFieldProps = {
   containerProps?: ComponentProps<'div'>
