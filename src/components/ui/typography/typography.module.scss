@@ -4,7 +4,7 @@
   font-size: $fontSize;
   font-weight: $fontWeight;
   line-height: $lineHeight;
-  color: var(--dark-900,#000);
+  color: var(--color-text-primary);
 }
 
 .large {
@@ -50,20 +50,23 @@
 .link1,
 .link1:visited {
   @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-regular));
+
   cursor: pointer;
-  color: var(--primary-500, #397DF6);
+  color: var(--color-text-link);
   text-decoration: underline;
 }
 
 .link2,
 .link2:visited {
   @include typography(var(--font-size-xs), var(--line-height-s), var(--font-weight-regular));
-  color: var(--primary-500, #397DF6);
+
   cursor: pointer;
+  color: var(--color-text-link);
   text-decoration: underline;
 }
 
 .error {
   @include typography(var(--font-size-xs), var(--line-height-m), var(--font-weight-regular));
+
   color: var(--color-danger-300);
 }

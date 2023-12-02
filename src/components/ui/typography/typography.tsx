@@ -1,30 +1,37 @@
-import { ComponentPropsWithoutRef, ElementType } from 'react'
-import { Link } from 'react-router-dom'
+import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
+
+import { clsx } from 'clsx'
 
 import s from './typography.module.scss'
 
-export type TypographyProps<T extends ElementType = 'button' | typeof Link> = {
-  as?: T
-  className: string
-  variant?:
-    | 'body1'
-    | 'body2'
-    | 'caption'
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'large'
-    | 'link1'
-    | 'link2'
-    | 'overline'
-    | 'subtitle1'
-    | 'subtitle2'
-} & ComponentPropsWithoutRef<T>
+export interface TextProps<T extends ElementType> {
+    as?: T
+    children?: ReactNode
+    className?: string
+    variant?:
+        | 'body1'
+        | 'body2'
+        | 'caption'
+        | 'error'
+        | 'h1'
+        | 'h2'
+        | 'h3'
+        | 'large'
+        | 'link1'
+        | 'link2'
+        | 'overline'
+        | 'subtitle1'
+        | 'subtitle2'
+}
 
-export const Typography = <T extends ElementType = 'div'>(
-  props: TypographyProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof TypographyProps<T>>
-) => {
-  const { as: Component = 'span', className, variant = 'body1', ...rest } = props
+export function Typography<T extends ElementType = 'p'>({
+    as,
+    className,
+    variant = 'body1',
+    ...restProps
+}: TextProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>>) {
+    const classNames = clsx(s.text, s[variant], className)
+    const Component = as || 'p'
 
-  return <Component className={`${s[variant]} ${className}`} {...rest} />
+    return <Component className={classNames} {...restProps} />
 }

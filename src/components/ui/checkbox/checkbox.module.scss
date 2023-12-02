@@ -1,76 +1,79 @@
-@mixin circle($backgroundColor) {
-  content: '';
-
-  position: absolute;
-  z-index: -1;
-
+.container {
   display: flex;
-
-  width: 36px;
-  height: 36px;
-
-  background-color: $backgroundColor;
-  border-radius: 50%;
-
+  align-items: center;
 }
 
-.default {
-  all: revert;
+.label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 
+  &.disabled {
+    cursor: initial;
+    color: var(--color-dark-100);
+  }
+}
+
+.root {
   cursor: pointer;
 
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 
   width: 18px;
   height: 18px;
 
-  border: 2px solid var(--color-light-100);
+  background-color: var(--color-dark-900);
+  border: 2px solid var(--color-light-900);
   border-radius: 2px;
 
-
-  &:hover::before {
-    @include circle(var(--color-dark-500));
-  }
-
-  &:active::before {
-    @include circle(var(--color-dark-100));
-  }
-
   &:focus {
-    outline: none;
-  }
-
-  &:focus::before {
-    @include circle(var(--color-dark-100));
+    background-color: var(--color-bg-focus);
   }
 
   &:disabled {
+    cursor: initial;
     border-color: var(--color-dark-100);
+  }
+
+  &[data-state='checked']:disabled {
+    background-color: var(--color-checkbox-disabled);
   }
 }
 
-.uncheck {
-  background-color: grey;
-  border-color: var(--color-light-900);
-}
-
-.label {
+.buttonWrapper {
   cursor: pointer;
 
   display: flex;
-  gap: 11px;
   align-items: center;
+  justify-content: center;
 
-  width: fit-content;
+  width: 36px;
+  height: 36px;
 
-  color: var(--color-light-100);
+  border-radius: 50%;
 
+  &.disabled {
+    cursor: initial;
+  }
+
+  &:focus-within,
+  &:hover:not(.disabled),
+  &:hover .root:not([data-state='checked']) {
+    background-color: var(--color-dark-500);
+  }
+
+  &:active:not(.disabled) {
+    background-color: var(--color-dark-100);
+  }
+
+  &.left {
+    margin-left: -9px;
+  }
 }
 
-.labelDisabled {
-  color: var(--color-dark-100);
+.indicator {
+  width: 18px;
+  height: 18px;
 }
-

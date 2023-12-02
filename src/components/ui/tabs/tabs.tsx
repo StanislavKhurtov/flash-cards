@@ -1,50 +1,37 @@
-import { FC, useState } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
-import * as Tabs from '@radix-ui/react-tabs'
+import * as TabsPrimitive from '@radix-ui/react-tabs'
+import { clsx } from 'clsx'
 
 import s from './tabs.module.scss'
 
-export type TabsType = {
-  disabled?: boolean
-  title: string
-  value: string
-}
+const Tabs = TabsPrimitive.Root
 
-export type TabSwitcherPropsType = {
-  tabs: TabsType[]
-}
+const TabsList = forwardRef<
+  ElementRef<typeof TabsPrimitive.List>,
+  ComponentPropsWithoutRef<typeof TabsPrimitive.List>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.List className={clsx(s.list, className)} ref={ref} {...props} />
+))
 
-export const Tab: FC<TabSwitcherPropsType> = ({ tabs }) => {
-  const [activeTab, setActiveTab] = useState(tabs[0].value)
+TabsList.displayName = TabsPrimitive.List.displayName
 
-  return (
-    <div className={s.wrapper}>
-      <Tabs.Root
-        className={s.tabsRoot}
-        defaultValue={tabs[0].value}
-        onValueChange={setActiveTab}
-        orientation={'horizontal'}
-        value={activeTab}
-      >
-        <Tabs.List className={s.tabsList}>
-          {tabs.map((tab: TabsType, i: number) => (
-            <Tabs.Trigger
-              className={`${s.tabsTrigger} ${activeTab === tab.value ? s.active : ''}`}
-              key={i}
-              value={tab.value}
-            >
-              <span>{tab.title}</span>
-            </Tabs.Trigger>
-          ))}
-        </Tabs.List>
-        <div className={s.body}>
-          {tabs.map((tab: TabsType, i: number) => (
-            <Tabs.Content className={s.tabsContent} key={i} value={tab.value}>
-              {tab.value}
-            </Tabs.Content>
-          ))}
-        </div>
-      </Tabs.Root>
-    </div>
-  )
-}
+const TabsTrigger = forwardRef<
+  ElementRef<typeof TabsPrimitive.Trigger>,
+  ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.Trigger className={clsx(s.trigger, className)} ref={ref} {...props} />
+))
+
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
+
+const TabsContent = forwardRef<
+  ElementRef<typeof TabsPrimitive.Content>,
+  ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.Content className={clsx(s.content, className)} ref={ref} {...props} />
+))
+
+TabsContent.displayName = TabsPrimitive.Content.displayName
+
+export { Tabs, TabsContent, TabsList, TabsTrigger }
